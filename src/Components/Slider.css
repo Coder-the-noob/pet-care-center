@@ -1,0 +1,38 @@
+/* Scope ONLY to Swiper */
+
+.mySwiper {
+  width: 100%;
+  
+}
+
+/* Remove body styling – do NOT style global body */
+.mySwiper * {
+  font-family:
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+/* Swiper container */
+.mySwiper .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Slide container */
+.mySwiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #444;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Slide images */
+.mySwiper .swiper-slide img {
+  display: block;
+  
+}
