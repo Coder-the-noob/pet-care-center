@@ -1,6 +1,7 @@
 import React from "react";
 import petLogo from "../assets/company_logo.png.png";
 import { Link } from "react-router";
+import "animate.css";
 
 const Navbar = () => {
   return (
@@ -40,8 +41,14 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex justify-center items-center gap-4">
-          <img className="w-17 rounded-full" src={petLogo} alt="WarmPaws Logo" />
-          <span className="font-bold text-xl">WarmPaws – Pet Care Center</span>
+          <img
+            className="w-15 rounded-full animate__animated animate__bounceIn animate__delay-1s"
+            src={petLogo}
+            alt="WarmPaws Logo"
+          />
+          <span className="font-bold text-xl animate__animated animate__fadeInUp animate__delay-1s">
+            WarmPaws – Pet Care Center
+          </span>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">

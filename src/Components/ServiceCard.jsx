@@ -8,8 +8,10 @@ const ServiceCard = ({ service }) => {
   const closeModal = () => setIsOpen(false);
 
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 
-                    transform transition duration-300 hover:shadow-lg hover:-translate-y-2">
+    <div
+      className="bg-white rounded-xl shadow-md p-4 
+                    transform transition duration-300 hover:shadow-lg hover:-translate-y-2"
+    >
       <img
         src={service.image}
         alt={service.serviceName}
@@ -39,7 +41,9 @@ const ServiceCard = ({ service }) => {
           <div className="bg-white rounded-lg max-w-md w-full p-6 relative">
             <h2 className="text-xl font-bold mb-4">{service.serviceName}</h2>
             <p className="text-gray-700 mb-4">{service.description}</p>
-            <p className="text-gray-800 font-bold mb-4">Price: ${service.price}</p>
+            <p className="text-gray-800 font-bold mb-4">
+              Price: ${service.price}
+            </p>
             <p className="flex items-center gap-1 text-yellow-500 font-medium">
               <FaStar /> {service.rating}
             </p>
