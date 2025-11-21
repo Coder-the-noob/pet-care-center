@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const experts = [
   {
@@ -32,15 +34,19 @@ const experts = [
 ];
 
 const ExpertVets = () => {
+
+  useEffect(() => {
+    AOS.init({ duration: 900, easing: "ease-in-out" });
+  }, []);
   return (
     <div className="container mx-auto mt-16 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center text-violet-700">
+      <h1 className="text-3xl font-bold mb-8 text-center text-violet-700" data-aos="fade">
         Meet Our Expert Vets
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
         {experts.map((vet) => (
-          <div key={vet.id} className="card bg-base-100 w-80 shadow-lg hover:shadow-xl transition">
+          <div key={vet.id} className="card bg-base-100 w-80 shadow-lg hover:shadow-xl transition" data-aos="zoom-in-up">
             <figure>
               <img
                 src={vet.image}
