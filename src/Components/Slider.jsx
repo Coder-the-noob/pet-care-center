@@ -15,7 +15,6 @@ import dog4 from '../assets/dog-warm-2.jpg';
 import cat1 from '../assets/cat-warm.jpg';
 import cat2 from '../assets/cat-warm-2.jpg';
 import cat3 from '../assets/cat-warm-3.jpg';
-import cat4 from '../assets/cat-warm-3.jpg';
 import cat5 from '../assets/cat-warm-4.jpg';
 
 function Slider() {
@@ -29,7 +28,8 @@ function Slider() {
         keyboard={true}
         modules={[Navigation, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
-      >
+        >
+        <SwiperSlide><img className='w-full h-[500px] object-cover' src={cat5} alt="" /></SwiperSlide>
         <SwiperSlide><img className='w-full h-[500px] object-cover' src={dog1} alt="" /></SwiperSlide>
         <SwiperSlide><img className='w-full h-[500px] object-cover' src={cat1} alt="" /></SwiperSlide>
         <SwiperSlide><img className='w-full h-[500px] object-cover' src={dog2} alt="" /></SwiperSlide>
@@ -37,7 +37,6 @@ function Slider() {
         <SwiperSlide><img className='w-full h-[500px] object-cover' src={dog3} alt="" /></SwiperSlide>
         <SwiperSlide><img className='w-full h-[500px] object-cover' src={cat3} alt="" /></SwiperSlide>
         <SwiperSlide><img className='w-full h-[500px] object-cover' src={dog4} alt="" /></SwiperSlide>
-        <SwiperSlide><img className='w-full h-[500px] object-cover' src={cat5} alt="" /></SwiperSlide>
       </Swiper>
     </div>
   );

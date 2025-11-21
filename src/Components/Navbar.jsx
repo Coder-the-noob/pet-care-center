@@ -40,7 +40,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex justify-center items-center gap-4">
-          <img className="w-21 rounded-full" src={petLogo} alt="WarmPaws Logo" />
+          <img className="w-17 rounded-full" src={petLogo} alt="WarmPaws Logo" />
           <span className="font-bold text-xl">WarmPaws – Pet Care Center</span>
         </div>
       </div>
