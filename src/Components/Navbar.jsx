@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import petLogo from "../assets/company_logo.png.png";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
+import userIcon from "../assets/user.png";
 import "animate.css";
+import { AuthContext } from "../Provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("User logged out successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Logout failed: " + error.message);
+      });
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -30,13 +44,36 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to="/home">Home</Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-violet-500 font-bold" : ""
+                }
+              >
+                Home
+              </NavLink>
             </li>
+
             <li>
-              <Link to="/services">Services</Link>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive ? "text-violet-500 font-bold" : ""
+                }
+              >
+                Services
+              </NavLink>
             </li>
+
             <li>
-              <Link to="/profile">My Profile</Link>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? "text-violet-500 font-bold" : ""
+                }
+              >
+                My Profile
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -54,18 +91,54 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-semibold">
           <li>
-            <Link to="/home">Home</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "text-violet-500 font-bold" : ""
+              }
+            >
+              Home
+            </NavLink>
           </li>
+
           <li>
-            <Link to="/services">Services</Link>
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                isActive ? "text-violet-500 font-bold" : ""
+              }
+            >
+              Services
+            </NavLink>
           </li>
+
           <li>
-            <Link to="/profile">My Profile</Link>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                isActive ? "text-violet-500 font-bold" : ""
+              }
+            >
+              My Profile
+            </NavLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <img
+          className="w-12 rounded-full space-x-3"
+          src={`${user && user.photoURL ? user.photoURL : userIcon}`}
+          alt=""
+        />
+        {user ? (
+          <button onClick={handleLogOut} className="btn btn-primary px-10 ml-4">
+            Logout
+          </button>
+        ) : (
+          <Link to="/auth/login" className="btn btn-primary px-10 ml-4">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

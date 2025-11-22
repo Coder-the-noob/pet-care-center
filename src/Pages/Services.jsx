@@ -17,8 +17,7 @@ const Services = () => {
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
-        AOS.refresh(); 
-      });
+        AOS.refresh(); });
   }, []);
 
   return (

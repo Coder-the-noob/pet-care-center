@@ -26,7 +26,7 @@ const PopularCare = () => {
   return (
     <div className="container mx-auto mt-10 px-4">
       <h1
-        className="text-3xl text-center font-bold mb-6 text-gray-800"
+        className="text-3xl text-center font-bold mb-6 text-violet-800"
         data-aos="fade-up"
       >
         Popular Winter Care Services
@@ -42,10 +42,10 @@ const PopularCare = () => {
         <div className="flex justify-center items-center" data-aos="fade-up">
           <Link to="/services">
             <div className="flex items-center gap-2 cursor-pointer">
-              <span className="text-blue-600 font-semibold hover:underline">
+              <span className="text-blue-700 font-semibold hover:underline">
                 View All Services
               </span>
-              <div className="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex justify-center items-center shadow-lg transition">
+              <div className="w-10 h-10 bg-blue-700 hover:bg-blue-800 text-white rounded-full flex justify-center items-center shadow-lg transition">
                 <FaArrowRight />
               </div>
             </div>
