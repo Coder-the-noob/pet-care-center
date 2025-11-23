@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, setUser, updateUserProfile, googleLogin } = useContext(AuthContext);
 
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -79,7 +81,7 @@ const Register = () => {
     googleLogin()
       .then((result) => {
         const loggedUser = result.user;
-        setUser(loggedUser); 
+        setUser(loggedUser);
         toast.success("Logged in with Google successfully!");
         navigate(from, { replace: true });
       })
@@ -92,7 +94,7 @@ const Register = () => {
   return (
     <div className="flex justify-center min-h-screen items-center">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
-        <h2 className="font-semibold text-2xl text-center">
+        <h2 className="font-semibold text-2xl text-center mb-4">
           Register Your Account
         </h2>
         <form onSubmit={handleRegister} className="card-body">
@@ -127,19 +129,29 @@ const Register = () => {
               required
             />
 
-            {/* Password */}
+            {/* Password with eye toggle */}
             <label className="label">Password</label>
-            <input
-              name="password"
-              type="password"
-              className="input"
-              placeholder="Password"
-              required
-            />
+            <div className="relative w-full">
+              <input
+                name="password"
+                type={showPassword ? "text" : "password"}
+                className="input pr-10 w-full"
+                placeholder="Password"
+                required
+              />
+              <button
+                type="button"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
             {passwordError && (
               <p className="text-red-500 text-sm">{passwordError}</p>
             )}
 
+            {/* Register Button */}
             <button type="submit" className="btn btn-neutral mt-4">
               Register
             </button>
@@ -180,6 +192,7 @@ const Register = () => {
               Register with Google
             </button>
 
+            {/* Login Link */}
             <p className="mt-4 font-semibold text-center">
               Already have an account?{" "}
               <Link to="/auth/login" className="link link-hover text-red-500">

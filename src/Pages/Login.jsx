@@ -2,10 +2,13 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
 
   const { logIn, googleLogin } = useContext(AuthContext);
   const location = useLocation();
@@ -41,29 +44,65 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Google login failed: " + error.message); 
+        toast.error("Google login failed: " + error.message);
         setError(error.code);
       });
   };
 
   return (
     <div className="flex mx-auto min-h-screen justify-center items-center">
-      <form className="card-body flex justify-center items-center" onSubmit={handleLogin}>
+      <form
+        className="card-body flex justify-center items-center"
+        onSubmit={handleLogin}
+      >
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-          <h1 className="text-xl font-bold text-center mb-4">Login Your Account</h1>
+          <h1 className="text-xl font-bold text-center mb-4">
+            Login Your Account
+          </h1>
 
           <label className="label">Email</label>
-          <input type="email" name="email" className="input" placeholder="Email" required />
+          <input
+            type="email"
+            name="email"
+            className="input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
           <label className="label">Password</label>
-          <input type="password" name="password" className="input" placeholder="Password" required />
+          <div className="relative w-full">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="input pr-10 w-full"
+              placeholder="Password"
+              required
+            />
+            <button
+              type="button"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
 
-          <div>
-              <a className="link link-hover font-semibold">Forget Password?</a>
+          <div className="mt-2">
+            <Link
+              to="/auth/forgot-password"
+              className="link link-hover font-semibold"
+              state={{ email: "" }}
+            >
+              Forget Password?
+            </Link>
           </div>
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
-          <button type="submit" className="btn btn-neutral mt-4">Login</button>
+          <button type="submit" className="btn btn-neutral mt-4">
+            Login
+          </button>
 
           {/* Google Button */}
           <button
@@ -102,7 +141,13 @@ const Login = () => {
           </button>
 
           <p className="mt-4 font-semibold text-center">
-              Dont'have an account? <Link to="/auth/register" className="link link-hover font-semibold text-red-500">Register</Link>
+            Dont'have an account?{" "}
+            <Link
+              to="/auth/register"
+              className="link link-hover font-semibold text-red-500"
+            >
+              Register
+            </Link>
           </p>
         </fieldset>
       </form>
