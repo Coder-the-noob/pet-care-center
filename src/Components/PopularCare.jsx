@@ -10,7 +10,7 @@ const PopularCare = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 700,
+      duration: 1000,
       easing: "ease-in-out",
     });
 

@@ -32,7 +32,7 @@ const tips = [
 const WinterCareTips = () => {
 
   useEffect(() => {
-    AOS.init({ duration: 900, easing: "ease-in-out" });
+    AOS.init({ duration: 1000, easing: "ease-in-out" });
   }, []);
 
   return (

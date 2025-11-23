@@ -3,6 +3,7 @@ import Slider from '../Components/Slider';
 import PopularCare from '../Components/PopularCare';
 import ExpertVets from '../Components/ExpertVets';
 import WinterCareTips from '../Components/WinterCareTips';
+import TestimonialsSection from '../Components/TestimonialsSection';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <PopularCare></PopularCare>
             <ExpertVets></ExpertVets>
             <WinterCareTips></WinterCareTips>
+            <TestimonialsSection></TestimonialsSection>
         </div>
     );
 };

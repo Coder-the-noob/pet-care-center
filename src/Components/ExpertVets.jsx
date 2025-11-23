@@ -36,7 +36,7 @@ const experts = [
 const ExpertVets = () => {
 
   useEffect(() => {
-    AOS.init({ duration: 900, easing: "ease-in-out" });
+    AOS.init({ duration: 1000, easing: "ease-in-out" });
   }, []);
   return (
     <div className="container mx-auto mt-16 px-4">
