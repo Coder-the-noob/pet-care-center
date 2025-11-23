@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { toast } from "react-hot-toast";
 
 const ServiceCard = ({ service }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "" });
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
+  const handleFormChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    toast.success("Service booked successfully!");
+    setFormData({ name: "", email: "" }); 
+  };
+
   return (
     <div
       className="bg-white rounded-xl shadow-md p-4 
-                    transform transition duration-300 hover:shadow-lg hover:-translate-y-2"
+                  transform transition duration-300 hover:shadow-lg hover:-translate-y-2"
     >
       <img
         src={service.image}
@@ -47,6 +59,40 @@ const ServiceCard = ({ service }) => {
             <p className="flex items-center gap-1 text-yellow-500 font-medium">
               <FaStar /> {service.rating}
             </p>
+
+            {/* Booking Form */}
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold mb-2">Book Service</h3>
+              <form
+                onSubmit={handleFormSubmit}
+                className="flex flex-col gap-3"
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleFormChange}
+                  required
+                  className="border border-gray-300 rounded-lg p-2"
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleFormChange}
+                  required
+                  className="border border-gray-300 rounded-lg p-2"
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+                >
+                  Book Now
+                </button>
+              </form>
+            </div>
 
             <button
               onClick={closeModal}

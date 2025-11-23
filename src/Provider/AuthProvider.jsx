@@ -19,10 +19,8 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  // console.log(user);
-
+      const [loading, setLoading] = useState(true);
+    
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -37,13 +35,20 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  const updateUserProfile = (profile) => {
-    return updateProfile(auth.currentUser, profile);
+  const updateUserProfile = async (name, photoURL) => {
+    await updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL: photoURL,
+    });
+
+    setUser({
+      ...auth.currentUser,
+      displayName: name,
+      photoURL: photoURL,
+    });
   };
 
-  const logOut = () => {
-    return signOut(auth);
-  };
+  const logOut = () => signOut(auth);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
