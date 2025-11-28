@@ -125,13 +125,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to="/profile">
+        <div className="tooltip tooltip-bottom" data-tip={user?.displayName || "Guest"}>
+          <Link to="/profile">
           <img
             className="w-12 rounded-full space-x-3"
             src={`${user && user.photoURL ? user.photoURL : userIcon}`}
             alt=""
           />
         </Link>
+        </div>
         {user ? (
           <button onClick={handleLogOut} className="btn btn-primary px-10 ml-4">
             Logout
