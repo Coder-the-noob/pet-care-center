@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import petLogo from "../assets/company_logo.png.png";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink } from "react-router-dom";
 import userIcon from "../assets/user.png";
 import "animate.css";
 import { AuthContext } from "../Provider/AuthProvider";
